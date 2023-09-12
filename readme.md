@@ -1,0 +1,1 @@
+code for static website for [reqq.ai](http://reqq.ai)
