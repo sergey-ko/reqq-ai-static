@@ -101,10 +101,7 @@ export const paths = {
   },
   // Others
   pages: '/pages',
-  docs: 'https://zone-docs.vercel.app',
+  docs: '',
   license: 'https://material-ui.com/store/license/#i-standard-license',
   minimalStore: 'https://material-ui.com/store/items/minimal-dashboard',
-  zoneStore: 'https://mui.com/store/items/zone-landing-page/',
-  figmaPreview:
-    'https://www.figma.com/file/X6OyiGHF8dnTk3aT38P0oN/%5BPreview%5D-Zone_Web.30.03.23?node-id=0-1',
 };
