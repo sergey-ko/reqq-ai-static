@@ -73,7 +73,7 @@ export default function HomeHero() {
                 // endIcon={<Iconify icon="carbon:launch" />}
                 target="_blank"
                 rel="noopener"
-                disabled={true}
+                disabled
                 // href={paths.figmaPreview}
               >
                 coming soon ...
@@ -83,7 +83,7 @@ export default function HomeHero() {
           </Grid>
 
           {mdUp && (
-            <Grid xs={12} md={6} lg={7} textAlign={`center`}>
+            <Grid xs={12} md={6} lg={7} textAlign="center">
               <Image
                 visibleByDefault
                 disabledEffect
