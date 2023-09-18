@@ -54,8 +54,8 @@ export default function HomeHero() {
                 textAlign: { xs: 'center', md: 'left' },
               }}
             >
-              <Typography variant="h1">
-                Requirements quality <br />
+              <Typography variant="h2">
+                Requirements quality. <br />
                 Assessed. Improved. <br />
                 <Box component="span" sx={{ color: 'primary.main' }}>
                   {` ReQQ`}
