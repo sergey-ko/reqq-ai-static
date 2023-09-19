@@ -108,14 +108,14 @@ export default function HomeHero() {
             >
               <Typography variant="h2">
                 Requirements quality. <br />
-                Assessed. Improved. <br />
+                Assessed. Improved.
                 <Box component="span" sx={{ color: 'primary.main' }}>
                   {` ReQQ`}
                 </Box>
               </Typography>
 
               <Typography sx={{ color: 'text.secondary' }}>
-                Analyze single requiremnts and recieve Excel report.
+                Analyze single requirement and receive Excel report.
               </Typography>
 
               <StyledInput
@@ -133,9 +133,9 @@ export default function HomeHero() {
                 variant="contained"
                 color="primary"
                 onClick={handleSendRequest}
-                disabled={requirementTextInputRef.current.value?.length < 10}
+                // disabled={requirementTextInputRef.current.value?.length < 10}
               >
-                Send Request
+                Send
               </Button>
 
 
