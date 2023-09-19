@@ -31,10 +31,9 @@ export default function ThemeProvider({ children }) {
 
   const baseOption = useMemo(
     () => ({
-      // palette: palette('light'),
-      palette: palette('dark'),
-      shadows: shadows('dark'),
-      customShadows: customShadows('dark'),
+      palette: palette('light'),
+      shadows: shadows('light'),
+      customShadows: customShadows('light'),
       typography,
       shape: { borderRadius: 8 },
     }),
