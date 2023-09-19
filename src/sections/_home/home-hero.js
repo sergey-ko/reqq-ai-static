@@ -54,13 +54,21 @@ StyledInput.propTypes = {
 export default function HomeHero() {
   const [setFileUrl] = useState(null);
   const requirementTextInputRef = useRef(null);
+  const [sendRequest, setSendRequest] = useState(false);
   const mdUp = useResponsive('up', 'md');
 
   const theme = useTheme();
 
   // ...
 
+
+
+
   const handleSendRequest = async () => {
+    setSendRequest(true);
+    // setTimeout(() => {
+    //   setSendRequest(false);
+    // }, 10000);
     const requestText = requirementTextInputRef.current.value;
     requirementTextInputRef.current.value = "";
 
@@ -78,10 +86,11 @@ export default function HomeHero() {
       const fileBlob = await response.blob();
       const fileUrl = URL.createObjectURL(fileBlob);
       window.open(fileUrl, '_blank');
-      setFileUrl(fileUrl);
+      // setFileUrl(fileUrl);
     } else {
       console.error('Failed to send request');
     }
+    setSendRequest(false);
   };
 
   return (
@@ -116,36 +125,54 @@ export default function HomeHero() {
                 </Box>
               </Typography>
 
-              <Typography sx={{ color: 'text.secondary' }}>
-                Analyze single requirement and receive Excel report.
-              </Typography>
+              {!sendRequest && (
+                <Typography sx={{ color: 'text.secondary' }}>
+                  Analyze single requirement and receive Excel report.
+                </Typography>
+              )}
 
-              <StyledInput
-                name="requirement-text"
-                label="Requirement text"
-                multiline
-                rows={4}
-                sx={{ mb: 2.5 }}
-                inputRef={requirementTextInputRef}
-                placeholder="The aircraft shall be able to fly at a speed of at least 500 km/h."
-              />
+              {!sendRequest && (
+                <StyledInput
+                  name="requirement-text"
+                  label="Requirement text"
+                  multiline
+                  rows={4}
+                  sx={{ mb: 2.5 }}
+                  inputRef={requirementTextInputRef}
+                  placeholder="The aircraft shall be able to fly at a speed of at least 500 km/h."
+                />
+              )}
 
-              <Button
-                size="large"
-                variant="contained"
-                color="primary"
-                onClick={handleSendRequest}
-                // disabled={requirementTextInputRef.current.value?.length < 10}
-              >
-                Send
-              </Button>
+              {sendRequest && (
+                <Typography sx={{ color: 'text.secondary' }} >
+                  <b>Your Request is Being Processed</b> <br />
+                  We are diligently processing your request, and you will soon receive an Excel report containing the results you requested.
+                  Processing times may vary depending on the number of requests in the queue, but rest assured, we aim to deliver your report as quickly as possible. Typically, this process takes no longer than 1 minute.<br />
+
+                  <Box component="span" sx={{ color: 'primary.main' }}>
+                    {` Thank you for your patience. `}
+                  </Box>
+                </Typography>
+              )}
+
+              {!sendRequest && (
+                <Button
+                  size="large"
+                  variant="contained"
+                  color="primary"
+                  onClick={handleSendRequest}
+                  disabled={sendRequest}
+                >
+                  Send
+                </Button>
+              )}
 
 
-              <Typography variant="caption" component="div" sx={{ color: 'text.secondary' }}>
+              {/* <Typography variant="caption" component="div" sx={{ color: 'text.secondary' }}>
                 * The service is free for now. We reserve the right to change this at any time. <br />
                 ** The service is provided as is. We do not guarantee any results.<br />
                 *** Processing time depends on the number of requests in the queue and might take up to 1 minute.
-              </Typography>
+              </Typography> */}
             </Stack>
           </Grid>
 
