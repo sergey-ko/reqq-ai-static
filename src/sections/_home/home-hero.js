@@ -1,12 +1,17 @@
-import { useRef } from 'react';
+import PropTypes from 'prop-types';
+import { useRef, useState } from 'react';
 
 import Box from '@mui/material/Box';
+import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
+import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
-import { alpha, useTheme } from '@mui/material/styles';
+import { inputBaseClasses } from '@mui/material/InputBase';
+import { inputLabelClasses } from '@mui/material/InputLabel';
+import { alpha, styled, useTheme } from '@mui/material/styles';
 
 import { paths } from 'src/routes/paths';
 import Image from 'src/components/image';
@@ -17,18 +22,65 @@ import { HEADER } from 'src/layouts/config-layout';
 import { useResponsive } from 'src/hooks/use-responsive';
 import { useBoundingClientRect } from 'src/hooks/use-bounding-client-rect';
 
+
 // ----------------------------------------------------------------------
 
+const StyledInput = styled((props) => <TextField fullWidth {...props} />)(({ theme }) => ({
+  [`& .${inputBaseClasses.input}`]: {
+    color: theme.palette.common.white,
+  },
+  [`& .${inputLabelClasses.root}.${inputLabelClasses.shrink}`]: {
+    color: theme.palette.grey[500],
+    [`&.${inputLabelClasses.focused}`]: {
+      color: theme.palette.grey[500],
+    },
+  },
+}));
+
+StyledInput.propTypes = {
+  theme: PropTypes.shape({
+    palette: PropTypes.shape({
+      common: PropTypes.shape({
+        white: PropTypes.string,
+      }),
+      grey: PropTypes.string,
+    }),
+  }),
+};
+
+
+// ...
+
 export default function HomeHero() {
-  const theme = useTheme();
-
-  const containerRef = useRef(null);
-
+  const [setFileUrl] = useState(null);
+  const requirementTextInputRef = useRef(null);
   const mdUp = useResponsive('up', 'md');
 
-  const container = useBoundingClientRect(containerRef);
+  const theme = useTheme();
 
-  const offsetLeft = container?.left;
+  // ...
+
+  const handleSendRequest = async () => {
+    const response = await fetch('https://ca-reqq-app.redriver-7ccc9618.eastus.azurecontainerapps.io/Report', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        requirementText: requirementTextInputRef.current.value,
+      }),
+    });
+
+    if (response.ok) {
+      requirementTextInputRef.current.value = "";
+      const fileBlob = await response.blob();
+      const fileUrl = URL.createObjectURL(fileBlob);
+      window.open(fileUrl, '_blank');
+      setFileUrl(fileUrl);
+    } else {
+      console.error('Failed to send request');
+    }
+  };
 
   return (
     <Box
@@ -63,22 +115,35 @@ export default function HomeHero() {
               </Typography>
 
               <Typography sx={{ color: 'text.secondary' }}>
-                Analyze single or set of requiremnts. With or without additional data sets.
+                Analyze single requiremnts and recieve Excel report.
               </Typography>
 
+              <StyledInput
+                name="requirement-text"
+                label="Requirement text"
+                multiline
+                rows={4}
+                sx={{ mb: 2.5 }}
+                inputRef={requirementTextInputRef}
+                placeholder="The aircraft shall be able to fly at a speed of at least 500 km/h."
+              />
+
               <Button
-                color="inherit"
                 size="large"
                 variant="contained"
-                // endIcon={<Iconify icon="carbon:launch" />}
-                target="_blank"
-                rel="noopener"
-                disabled
-                // href={paths.figmaPreview}
+                color="primary"
+                onClick={handleSendRequest}
+                disabled={requirementTextInputRef.current.value?.length < 10}
               >
-                coming soon ...
+                Send Request
               </Button>
 
+
+              <Typography variant="caption" component="div" sx={{ color: 'text.secondary' }}>
+                * The service is free for now. We reserve the right to change this at any time. <br />
+                ** The service is provided as is. We do not guarantee any results.<br />
+                *** Processing time depends on the number of requests in the queue and might take up to 1 minute.
+              </Typography>
             </Stack>
           </Grid>
 
@@ -93,8 +158,6 @@ export default function HomeHero() {
               />
             </Grid>
           )}
-
-
         </Grid>
       </Container>
     </Box>
