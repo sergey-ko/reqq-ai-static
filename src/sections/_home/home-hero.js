@@ -61,18 +61,20 @@ export default function HomeHero() {
   // ...
 
   const handleSendRequest = async () => {
+    const requestText = requirementTextInputRef.current.value;
+    requirementTextInputRef.current.value = "";
+
     const response = await fetch('https://ca-reqq-app.redriver-7ccc9618.eastus.azurecontainerapps.io/Report', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        requirementText: requirementTextInputRef.current.value,
+        requirementText: requestText
       }),
     });
 
     if (response.ok) {
-      requirementTextInputRef.current.value = "";
       const fileBlob = await response.blob();
       const fileUrl = URL.createObjectURL(fileBlob);
       window.open(fileUrl, '_blank');
@@ -108,7 +110,7 @@ export default function HomeHero() {
             >
               <Typography variant="h2">
                 Requirements quality. <br />
-                Assessed. Improved.
+                Assessed. Improved. <br />
                 <Box component="span" sx={{ color: 'primary.main' }}>
                   {` ReQQ`}
                 </Box>
