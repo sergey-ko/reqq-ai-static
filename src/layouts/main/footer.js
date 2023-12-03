@@ -186,8 +186,8 @@ export default function Footer() {
     </>
   );
 
-  //todo: unlock if full footer is required
-  //return <footer>{isHome ? simpleFooter : mainFooter}</footer>;
+  // todo: unlock if full footer is required
+  // return <footer>{isHome ? simpleFooter : mainFooter}</footer>;
   return <footer>{simpleFooter}</footer>;
 }
 

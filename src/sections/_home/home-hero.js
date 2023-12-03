@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 
-import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Unstable_Grid2';
@@ -11,11 +11,10 @@ import { inputBaseClasses } from '@mui/material/InputBase';
 import { inputLabelClasses } from '@mui/material/InputLabel';
 import { alpha, styled, useTheme } from '@mui/material/styles';
 
-
-import Iconify from 'src/components/iconify';
 import { paths } from 'src/routes/paths';
 import Image from 'src/components/image';
 import { bgGradient } from 'src/theme/css';
+import Iconify from 'src/components/iconify';
 import { HEADER } from 'src/layouts/config-layout';
 import { useResponsive } from 'src/hooks/use-responsive';
 
