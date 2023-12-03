@@ -1,6 +1,7 @@
 'use client';
 
-import { useScroll } from 'src/hooks/use-scroll';
+import { useScroll } from 'framer-motion';
+
 import ScrollProgress from 'src/components/scroll-progress';
 
 import HomeFaq from '../home-faqs';
