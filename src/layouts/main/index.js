@@ -8,10 +8,15 @@ import { usePathname } from 'src/routes/hooks';
 
 import { HEADER } from '../config-layout';
 
+import Footer from './footer';
+import Header from './header';
+
 // ----------------------------------------------------------------------
 
+const pathsOnDark = ['/sandbox'];
+
 const spacingLayout = [
-  '/',
+  '/', '/sandbox'
 ];
 
 export default function MainLayout({ children }) {
@@ -21,7 +26,7 @@ export default function MainLayout({ children }) {
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', height: 1 }}>
-      {/* <Header headerOnDark={actionPage(pathsOnDark)} /> */}
+      <Header headerOnDark={actionPage(pathsOnDark)} />
 
       <Box
         component="main"
@@ -34,7 +39,7 @@ export default function MainLayout({ children }) {
         {children}
       </Box>
 
-      {/* <Footer /> */}
+      <Footer />
     </Box>
   );
 }

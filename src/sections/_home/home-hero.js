@@ -1,10 +1,8 @@
 import PropTypes from 'prop-types';
-import { useRef, useState } from 'react';
 
-import Box from '@mui/material/Box';
-import Link from '@mui/material/Link';
-import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Unstable_Grid2';
@@ -13,14 +11,15 @@ import { inputBaseClasses } from '@mui/material/InputBase';
 import { inputLabelClasses } from '@mui/material/InputLabel';
 import { alpha, styled, useTheme } from '@mui/material/styles';
 
+
+import Iconify from 'src/components/iconify';
 import { paths } from 'src/routes/paths';
 import Image from 'src/components/image';
 import { bgGradient } from 'src/theme/css';
-import Iconify from 'src/components/iconify';
-import SvgColor from 'src/components/svg-color';
 import { HEADER } from 'src/layouts/config-layout';
 import { useResponsive } from 'src/hooks/use-responsive';
-import { useBoundingClientRect } from 'src/hooks/use-bounding-client-rect';
+
+
 
 
 // ----------------------------------------------------------------------
@@ -52,46 +51,11 @@ StyledInput.propTypes = {
 // ...
 
 export default function HomeHero() {
-  const [setFileUrl] = useState(null);
-  const requirementTextInputRef = useRef(null);
-  const [sendRequest, setSendRequest] = useState(false);
   const mdUp = useResponsive('up', 'md');
 
   const theme = useTheme();
 
-  // ...
-
-
-
-
-  const handleSendRequest = async () => {
-    setSendRequest(true);
-    // setTimeout(() => {
-    //   setSendRequest(false);
-    // }, 10000);
-    const requestText = requirementTextInputRef.current.value;
-    requirementTextInputRef.current.value = "";
-
-    const response = await fetch('https://ca-reqq-app.redriver-7ccc9618.eastus.azurecontainerapps.io/Report', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        requirementText: requestText
-      }),
-    });
-
-    if (response.ok) {
-      const fileBlob = await response.blob();
-      const fileUrl = URL.createObjectURL(fileBlob);
-      window.open(fileUrl, '_blank');
-      // setFileUrl(fileUrl);
-    } else {
-      console.error('Failed to send request');
-    }
-    setSendRequest(false);
-  };
+   // ...
 
   return (
     <Box
@@ -117,62 +81,47 @@ export default function HomeHero() {
                 textAlign: { xs: 'center', md: 'left' },
               }}
             >
-              <Typography variant="h2">
-                Requirements quality. <br />
-                Assessed. Improved. <br />
+              <Typography variant="h3">
+                Elevating Requirements to Excellence <br />
                 <Box component="span" sx={{ color: 'primary.main' }}>
-                  {` ReQQ`}
+                  {` Precisely Assessed, Strategically Enhanced`}
                 </Box>
               </Typography>
 
-              {!sendRequest && (
-                <Typography sx={{ color: 'text.secondary' }}>
-                  Analyze single requirement and receive Excel report.
+              <Typography sx={{ color: 'text.secondary' }}>
+              Discover our rapid API solution for advancing the quality of your requirements.
+              Streamlined assessment and improvement at your fingertips.
+              </Typography>
+
+              {/* <Button
+                color="inherit"
+                size="large"
+                variant="contained"
+                endIcon={<Iconify icon="carbon:launch" />}
+                target="_blank"
+                rel="noopener"
+                href={paths.sandbox}
+              >
+                Try it out now!
+              </Button> */}
+
+              <Button
+                color="primary"
+                size="large"
+                variant="contained"
+                endIcon={<Iconify icon="carbon:launch" />}
+                target="_blank"
+                rel="noopener"
+                href={paths.sandbox}
+              >
+                Explore Our Sandbox
+              </Button>
+
+              <Stack spacing={3}>
+                <Typography variant="overline">
+                Offering Flexible Solutions: Available for Both Public Cloud and On-Prem Deployments
                 </Typography>
-              )}
-
-              {!sendRequest && (
-                <StyledInput
-                  name="requirement-text"
-                  label="Requirement text"
-                  multiline
-                  rows={4}
-                  sx={{ mb: 2.5 }}
-                  inputRef={requirementTextInputRef}
-                  placeholder="The aircraft shall be able to fly at a speed of at least 500 km/h."
-                />
-              )}
-
-              {sendRequest && (
-                <Typography sx={{ color: 'text.secondary' }} >
-                  <b>Your Request is Being Processed</b> <br />
-                  We are diligently processing your request, and you will soon receive an Excel report containing the results you requested.
-                  Processing times may vary depending on the number of requests in the queue, but rest assured, we aim to deliver your report as quickly as possible. Typically, this process takes no longer than 1 minute.<br />
-
-                  <Box component="span" sx={{ color: 'primary.main' }}>
-                    {` Thank you for your patience. `}
-                  </Box>
-                </Typography>
-              )}
-
-              {!sendRequest && (
-                <Button
-                  size="large"
-                  variant="contained"
-                  color="primary"
-                  onClick={handleSendRequest}
-                  disabled={sendRequest}
-                >
-                  Send
-                </Button>
-              )}
-
-
-              {/* <Typography variant="caption" component="div" sx={{ color: 'text.secondary' }}>
-                * The service is free for now. We reserve the right to change this at any time. <br />
-                ** The service is provided as is. We do not guarantee any results.<br />
-                *** Processing time depends on the number of requests in the queue and might take up to 1 minute.
-              </Typography> */}
+              </Stack>
             </Stack>
           </Grid>
 

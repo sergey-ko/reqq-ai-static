@@ -51,7 +51,7 @@ export default function RootLayout({ children }) {
         <LocalizationProvider>
           <SettingsProvider
             defaultSettings={{
-              themeMode: 'dark', // 'light' | 'dark'
+              themeMode: 'light', // 'light' | 'dark'
               themeDirection: 'ltr', //  'rtl' | 'ltr'
               themeColorPresets: 'default', // 'default' | 'cyan' | 'purple' | 'blue' | 'orange' | 'red'
             }}
