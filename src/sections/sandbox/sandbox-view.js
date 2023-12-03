@@ -1,10 +1,11 @@
 'use client';
 
 import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
 
 import MainLayout from 'src/layouts/main';
 import { RouterLink } from 'src/routes/components';
-import Container from '@mui/material/Container';
+
 
 // ----------------------------------------------------------------------
 
@@ -23,8 +24,7 @@ export default function SandboxView() {
           src="https://reqq-sandbox.streamlit.app/?embed=true"
           height="1000"
           style={{width: '100%', border: 0}}
-        ></iframe>
-
+        />
 
         <Button component={RouterLink} href="/" size="large" color="inherit" variant="contained">
           Go to Home

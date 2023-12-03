@@ -1,8 +1,7 @@
 'use client';
 
-
+import { useScroll } from 'src/hooks/use-scroll';
 import ScrollProgress from 'src/components/scroll-progress';
-import { _pricingMarketing } from 'src/sections/_home/_pricing';
 
 import HomeFaq from '../home-faqs';
 import HomeHero from '../home-hero';
