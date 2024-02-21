@@ -80,8 +80,11 @@ export default function HomeHero() {
                 textAlign: { xs: 'center', md: 'left' },
               }}
             >
+              <Typography variant="h4">
+                Elevating Requirements to Excellence
+              </Typography>
+
               <Typography variant="h3">
-                Elevating Requirements to Excellence <br />
                 <Box component="span" sx={{ color: 'primary.main' }}>
                   {` Precisely Assessed, Strategically Enhanced`}
                 </Box>
