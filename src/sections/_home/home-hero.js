@@ -92,29 +92,31 @@ export default function HomeHero() {
               Streamlined assessment and improvement at your fingertips.
               </Typography>
 
-              {/* <Button
-                color="inherit"
-                size="large"
-                variant="contained"
-                endIcon={<Iconify icon="carbon:launch" />}
-                target="_blank"
-                rel="noopener"
-                href={paths.sandbox}
-              >
-                Try it out now!
-              </Button> */}
+              <Stack direction="row" spacing={2}>
+                <Button
+                  color="primary"
+                  size="large"
+                  variant="contained"
+                  endIcon={<Iconify icon="carbon:launch" />}
+                  target="_blank"
+                  rel="noopener"
+                  href={paths.sandbox}
+                >
+                  Explore Our Sandbox
+                </Button>
 
-              <Button
-                color="primary"
-                size="large"
-                variant="contained"
-                endIcon={<Iconify icon="carbon:launch" />}
-                target="_blank"
-                rel="noopener"
-                href={paths.sandbox}
-              >
-                Explore Our Sandbox
-              </Button>
+                <Button
+                  color="inherit"
+                  size="large"
+                  variant="contained"
+                  endIcon={<Iconify icon="carbon:launch" />}
+                  target="_blank"
+                  rel="noopener"
+                  href="https://apimreqq.developer.azure-api.net/"
+                >
+                  Check Out Dev Portal
+                </Button>
+              </Stack>
 
               <Stack spacing={3}>
                 <Typography variant="overline">
