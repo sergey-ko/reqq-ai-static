@@ -9,8 +9,7 @@ import Container from '@mui/material/Container';
 
 export default function CompactLayout({ children }) {
   return (
-    <>
-      <Container component="main">
+    <Container component="main">
         <Stack
           sx={{
             py: 12,
@@ -24,7 +23,6 @@ export default function CompactLayout({ children }) {
           {children}
         </Stack>
       </Container>
-    </>
   );
 }
 
